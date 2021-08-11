@@ -361,3 +361,9 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Ignore rider folders
+.idea
+
+# Ignore Data folder
+InvoiceWorker/Data

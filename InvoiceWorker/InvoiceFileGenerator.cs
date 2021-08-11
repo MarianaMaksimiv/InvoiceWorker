@@ -14,7 +14,8 @@ namespace InvoiceWorker
     
     public class InvoiceFileGenerator : IInvoiceGenerator
     {
-        private string GetInvoiceFilePath(Guid invoiceId) => Path.Combine(Directory.GetCurrentDirectory(), $"InvoiceData-{invoiceId}.txt");
+        private static string InvoiceFolder = Path.Combine(Directory.GetCurrentDirectory(), "Data", "Invoices");
+        private string GetInvoiceFilePath(Guid invoiceId) => Path.Combine(InvoiceFolder, $"Invoice-{invoiceId}.txt");
 
         public async Task AddRecordAsync(InvoiceEvent invoiceEvent)
         {
@@ -37,6 +38,7 @@ namespace InvoiceWorker
                     Environment.NewLine
                 }));
 
+            Directory.CreateDirectory(InvoiceFolder);
             await File.WriteAllLinesAsync(GetInvoiceFilePath(invoiceEvent.Content.InvoiceId), lines);
         }
     }

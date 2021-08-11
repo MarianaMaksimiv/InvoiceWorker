@@ -55,7 +55,7 @@ Item total cost: 48.5
             await _handler.ProcessEventAsync(@event);
 
             // Assert
-            var invoiceFilePath = Path.Combine(Directory.GetCurrentDirectory(), $"InvoiceData-{@event.Content.InvoiceId}.txt");
+            var invoiceFilePath = Path.Combine(Directory.GetCurrentDirectory(), "Data", "Invoices", $"Invoice-{@event.Content.InvoiceId}.txt");
             File.Exists(invoiceFilePath).Should().BeTrue();
             var result = await File.ReadAllTextAsync(invoiceFilePath);
             result.Should().BeEquivalentTo(expectedFileOutput);

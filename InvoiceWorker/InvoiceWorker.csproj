@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <UserSecretsId>dotnet-InvoiceWorker-484E46F1-FDFB-414E-9B9D-FA85B76DD740</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
