@@ -9,14 +9,14 @@ namespace InvoiceWorker
 {
     public interface IInvoiceGenerator
     {
-        Task AddRecord(InvoiceEvent record);
+        Task AddRecordAsync(InvoiceEvent record);
     }
     
     public class InvoiceFileGenerator : IInvoiceGenerator
     {
-        private string GetInvoiceFilePath (Guid invoiceId) => $@"C:\InvoiceData-{invoiceId}";
+        private string GetInvoiceFilePath(Guid invoiceId) => Path.Combine(Directory.GetCurrentDirectory(), $"InvoiceData-{invoiceId}.txt");
 
-        public async Task AddRecord(InvoiceEvent invoiceEvent)
+        public async Task AddRecordAsync(InvoiceEvent invoiceEvent)
         {
             var lines = new List<string>
             {

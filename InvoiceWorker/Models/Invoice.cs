@@ -5,12 +5,12 @@ namespace InvoiceWorker.Models
 {
     public class Invoice
     {
-        public Guid InvoiceId { get; init; }
-        public string InvoiceNumber { get; init; }
-        public IEnumerable<InvoiceLineItem> LineItems { get; init; }
-        public string Status { get; init; }
-        public DateTime DueDateUtc { get; init; }
-        public DateTime CreatedDateUtc { get; init; }
-        public DateTime UpdatedDateUtc { get; init; }
+        public Guid InvoiceId { get; set; }
+        public string InvoiceNumber { get; set; }
+        public IEnumerable<InvoiceLineItem> LineItems { get; set; }
+        public string Status { get; set; }
+        public DateTime DueDateUtc { get; set; }
+        public DateTime CreatedDateUtc { get; set; }
+        public DateTime UpdatedDateUtc { get; set; }
     }
 }

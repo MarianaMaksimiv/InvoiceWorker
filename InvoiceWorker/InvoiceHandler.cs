@@ -17,9 +17,9 @@ namespace InvoiceWorker
             _invoiceGenerator = invoiceGenerator;
         }
 
-        public Task ProcessEventAsync(InvoiceEvent @event)
+        public async Task ProcessEventAsync(InvoiceEvent @event)
         {
-            return _invoiceGenerator.AddRecord(@event);
+            await _invoiceGenerator.AddRecordAsync(@event);
         }
     }
 }
