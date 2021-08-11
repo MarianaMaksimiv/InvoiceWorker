@@ -19,5 +19,5 @@ It is fault resistant, follows all of the best practices and is a maintainable c
     dotnet run --project InvoiceWorker
 
     # to run tests
-    dotnet build
+    dotnet test
     ```
