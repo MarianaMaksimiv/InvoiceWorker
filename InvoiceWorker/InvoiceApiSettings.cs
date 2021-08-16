@@ -6,23 +6,23 @@ namespace InvoiceWorker
     public class InvoiceApiSettings
     {
         private const string InvoiceApiUri = "https://invoice-worker-api-mock.netlify.app/api/invoices/events";
-        private static readonly string HighwatermarkFolder = Path.Combine(Directory.GetCurrentDirectory(), "Data");
-        private static readonly string HighwatermarkFilePath = Path.Combine(HighwatermarkFolder, "InvoiceWorkerHighwatermark.txt");
+        private static readonly string LastProcessedEventFolder = Path.Combine(Directory.GetCurrentDirectory(), "Data");
+        private static readonly string LastProcessedEventFilePath = Path.Combine(LastProcessedEventFolder, "InvoiceWorkerLastProcessedEvent.txt");
 
         public static async Task<string> GenerateUriAsync()
         {
-            if (File.Exists(HighwatermarkFilePath) && long.TryParse(await File.ReadAllTextAsync(HighwatermarkFilePath), out var highwatermark))
+            if (File.Exists(LastProcessedEventFilePath) && long.TryParse(await File.ReadAllTextAsync(LastProcessedEventFilePath), out var eventId))
             {
-                return $"{InvoiceApiUri}?afterEventId={highwatermark}";
+                return $"{InvoiceApiUri}?afterEventId={eventId}";
             }
 
             return InvoiceApiUri;
         }
 
-        public static async Task SaveHighwatermarkAsync(long highwatermark)
+        public static async Task SaveLastProcessedEventIdAsync(long eventId)
         {
-            Directory.CreateDirectory(HighwatermarkFolder);
-            await File.WriteAllTextAsync(HighwatermarkFilePath, highwatermark.ToString());
+            Directory.CreateDirectory(LastProcessedEventFolder);
+            await File.WriteAllTextAsync(LastProcessedEventFilePath, eventId.ToString());
         }
     }
 }

@@ -45,7 +45,7 @@ namespace InvoiceWorker
                 {
                     var response = await _httpClient.GetFromJsonAsync<InvoiceEventResponse>(await InvoiceApiSettings.GenerateUriAsync(), _jsonSerializerOptions, stoppingToken);
 
-                    await InvoiceApiSettings.SaveHighwatermarkAsync(response.Items.Last().Id);
+                    await InvoiceApiSettings.SaveLastProcessedEventIdAsync(response.Items.Last().Id);
                     foreach (var invoiceEvent in response.Items)
                     {
                         await _invoiceHandler.ProcessEventAsync(invoiceEvent);
