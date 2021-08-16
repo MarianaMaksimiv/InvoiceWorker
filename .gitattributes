@@ -1,0 +1,4 @@
+# Declare windows-specific text files with windows file ending
+*.cs text eol=crlf
+*.sln text eol=crlf
+*.sqlproj text eol=crlf
