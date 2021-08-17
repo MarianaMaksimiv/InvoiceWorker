@@ -14,7 +14,7 @@ namespace InvoiceWorker
     
     public class InvoiceFileGenerator : IInvoiceGenerator
     {
-        private static string InvoiceFolder = Path.Combine(Directory.GetCurrentDirectory(), "Data", "Invoices");
+        private static readonly string InvoiceFolder = Path.Combine(Directory.GetCurrentDirectory(), "Data", "Invoices");
         private string GetInvoiceFilePath(Guid invoiceId) => Path.Combine(InvoiceFolder, $"Invoice-{invoiceId}.txt");
 
         public async Task AddRecordAsync(InvoiceEvent invoiceEvent)

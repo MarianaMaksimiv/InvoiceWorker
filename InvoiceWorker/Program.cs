@@ -1,23 +1,21 @@
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 namespace InvoiceWorker
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
-        }
+            var services = new ServiceCollection();
+            services.AddHttpClient();
+            services.AddSingleton<IInvoiceHandler, InvoiceHandler>();
+            services.AddSingleton<IInvoiceGenerator, InvoiceFileGenerator>();
+            services.AddSingleton<InvoiceWorker>();
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureServices((hostContext, services) =>
-                {
-                    services.AddHttpClient();
-                    services.AddSingleton<IInvoiceHandler, InvoiceHandler>();
-                    services.AddSingleton<IInvoiceGenerator, InvoiceFileGenerator>();
-                    services.AddHostedService<InvoiceWorker>();
-                });
+            var serviceProvider = services.BuildServiceProvider();
+            await serviceProvider.GetService<InvoiceWorker>().ExecuteAsync(CancellationToken.None);
+        }
     }
 }
