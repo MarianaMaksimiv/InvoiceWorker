@@ -1,7 +1,6 @@
 # InvoiceWorker
 
-The application consumes an event feed which Xero provides and creates a custom text file for each newly created invoice.
-It is fault resistant, follows all of the best practices and is a maintainable codebase that will last.
+The application consumes an Invoice event feed which Xero provides and creates a custom text file for each newly created invoice.
 
 
 ## Local Setup
