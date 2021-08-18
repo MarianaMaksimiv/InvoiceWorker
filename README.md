@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # InvoiceWorker
 
 The application consumes an Invoice event feed which Xero provides and creates a custom text file for each newly created invoice.
@@ -20,3 +21,6 @@ The application consumes an Invoice event feed which Xero provides and creates a
     # to run tests
     dotnet test
     ```
+=======
+# Invoicr-App
+>>>>>>> d46e84f4797c359b02b1f76a15f00133a4c013fa
